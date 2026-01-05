@@ -1,61 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>HECARES Foundation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <style>
     :root {
       --blue: #1f6cff;
+      --blue-dark: #0b1c3d;
       --blue-soft: #eef4ff;
-      --dark: #0b1c3d;
       --white: #ffffff;
       --accent: #00d4aa;
     }
 
     * {
       box-sizing: border-box;
-      font-family: "Segoe UI", sans-serif;
       margin: 0;
       padding: 0;
+      font-family: "Segoe UI", sans-serif;
     }
 
     body {
       background: var(--blue-soft);
-      color: var(--dark);
+      color: var(--blue-dark);
       scroll-behavior: smooth;
     }
 
+    /* HEADER FILTER */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: var(--white);
-      padding: 15px 30px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      padding: 14px 28px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
       z-index: 1000;
     }
 
-    header h1 {
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
       color: var(--blue);
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    header .logo img {
+      width: 36px;
+      height: 36px;
     }
 
     nav a {
-      margin-left: 20px;
+      margin-left: 18px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--blue-dark);
       font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
+    nav img {
+      width: 16px;
+      height: 16px;
+    }
+
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    /* HERO */
     .hero {
       height: 100vh;
-      background: linear-gradient(rgba(31,108,255,0.75), rgba(31,108,255,0.75)),
-      url("images/hero.jpg") center/cover;
+      background: linear-gradient(
+        rgba(31,108,255,0.75),
+        rgba(31,108,255,0.75)
+      ),
+      url("images/hero-1.jpg") center/cover;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -64,44 +91,74 @@
       padding: 40px;
     }
 
-    .hero h2 {
+    .hero h1 {
       font-size: 48px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       animation: float 3s ease-in-out infinite;
     }
 
     .hero p {
       font-size: 20px;
-      max-width: 750px;
+      max-width: 760px;
       margin: auto;
     }
 
-    .hero a {
+    .hero .cta a {
       display: inline-block;
-      margin: 15px;
+      margin: 16px;
       padding: 14px 32px;
       border-radius: 30px;
       background: white;
       color: var(--blue);
       font-weight: 600;
       text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .hero .cta a:hover {
+      transform: scale(1.08);
     }
 
     section {
-      padding: 100px 30px;
-      max-width: 1100px;
+      padding: 100px 28px;
+      max-width: 1200px;
       margin: auto;
     }
 
-    h3 {
+    section h2 {
       font-size: 36px;
       color: var(--blue);
       margin-bottom: 20px;
     }
 
+    /* TWO COLUMN */
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+      gap: 40px;
+      align-items: center;
+    }
+
+    .two-col img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    /* SEE MORE */
+    .see-more {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+      animation: pulse 2s infinite;
+    }
+
+    /* PROGRAM CARDS */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
       gap: 30px;
     }
 
@@ -109,17 +166,41 @@
       background: white;
       padding: 30px;
       border-radius: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+      transition: transform 0.4s;
     }
 
+    .card:hover {
+      transform: translateY(-12px);
+    }
+
+    .card img {
+      width: 60px;
+      margin-bottom: 16px;
+    }
+
+    /* FOUNDER */
+    .founder {
+      text-align: center;
+    }
+
+    .founder img {
+      width: 160px;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    /* FORM */
     .form-box {
       background: white;
       padding: 40px;
       border-radius: 24px;
-      text-align: left;
+      max-width: 600px;
+      margin: auto;
     }
 
-    .form-box input, .form-box select {
+    .form-box input {
       width: 100%;
       padding: 14px;
       margin: 10px 0;
@@ -144,25 +225,13 @@
       cursor: pointer;
     }
 
-    .terms {
-      font-size: 13px;
-      color: #555;
-      margin-top: 10px;
+    /* SOCIALS */
+    .socials img {
+      width: 40px;
+      margin: 10px;
     }
 
-    .terms span {
-      color: var(--blue);
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    footer {
-      background: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 40px;
-    }
-
+    /* BOTTOM FILTER */
     .bottom-bar {
       position: fixed;
       bottom: 0;
@@ -171,12 +240,34 @@
       display: flex;
       justify-content: space-around;
       padding: 12px;
+      z-index: 999;
     }
 
     .bottom-bar a {
       color: white;
       text-decoration: none;
-      font-weight: 600;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .bottom-bar img {
+      width: 22px;
+      display: block;
+      margin: auto;
+      margin-bottom: 4px;
+    }
+
+    footer {
+      background: var(--blue-dark);
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    @keyframes pulse {
+      0% {opacity: 1;}
+      50% {opacity: 0.6;}
+      100% {opacity: 1;}
     }
 
     @keyframes float {
@@ -190,52 +281,93 @@
 <body>
 
 <header>
-  <h1>HECARES Foundation</h1>
+  <div class="logo">
+    <img src="images/logo.png" alt="HECARES Logo">
+    HECARES Foundation
+  </div>
   <nav>
-    <a href="#about">About</a>
-    <a href="#programs">Programs</a>
-    <a href="#register">Register</a>
+    <a href="#about"><img src="images/icons/about.png">About</a>
+    <a href="#building"><img src="images/icons/build.png">Building</a>
+    <a href="#programs"><img src="images/icons/programs.png">Programs</a>
+    <a href="#founder"><img src="images/icons/founder.png">Founder</a>
+    <a href="#register"><img src="images/icons/register.png">Register</a>
+    <a href="#contact"><img src="images/icons/contact.png">Contact</a>
   </nav>
 </header>
 
 <div class="hero">
   <div>
-    <h2>Faith. Morality. Future Technology.</h2>
-    <p>Raising young people who are spiritually grounded and digitally prepared.</p>
-    <a href="#register">Register With Us</a>
-    <a href="seemore.html">See More</a>
+    <h1>Raising a Faith-Grounded, Future-Ready Generation</h1>
+    <p>Faith, morality, and digital technology — guiding young minds to understand the world they are growing into.</p>
+    <div class="cta">
+      <a href="#register">Register With Us</a>
+      <a href="seemore.html">See What We’re Building</a>
+    </div>
   </div>
 </div>
 
 <section id="about">
-  <h3>Who We Are</h3>
-  <p>
-    HECARES Foundation is a faith-based youth initiative focused on Christian values,
-    moral development, and responsible digital literacy including blockchain and AI.
-  </p>
+  <h2>Who We Are</h2>
+  <div class="two-col">
+    <div>
+      <p>
+        HECARES Foundation is a faith-based youth initiative focused on children,
+        teenagers, and young people. We combine Christian values, moral clarity,
+        and digital literacy to prepare young minds for a rapidly evolving world.
+      </p>
+    </div>
+    <img src="images/about.jpg">
+  </div>
 </section>
 
-<section id="programs">
-  <h3>What We Do</h3>
-  <div class="cards">
-    <div class="card">
-      <h4>Christian Education</h4>
-      <p>Teaching biblical foundations with clarity, relevance, and real-life application.</p>
-    </div>
-    <div class="card">
-      <h4>Digital Literacy</h4>
-      <p>Introducing youths to technology, blockchain, and the future digital economy.</p>
-    </div>
-    <div class="card">
-      <h4>Future Readiness</h4>
-      <p>Preparing young minds to participate ethically in the global economy.</p>
+<section id="building">
+  <h2>What We’re Building</h2>
+  <div class="two-col">
+    <img src="images/building.jpg">
+    <div>
+      <p>
+        We are building a global youth education movement that introduces faith,
+        technology, and economic awareness responsibly. From blockchain and AI to
+        life skills and morality, we guide young people to understand the future
+        without hype or harm.
+      </p>
+      <a class="see-more" href="seemore.html">→ See more details</a>
     </div>
   </div>
 </section>
 
-<section id="register">
-  <h3>Register With Us</h3>
+<section id="programs">
+  <h2>What We Do</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="images/icons/faith.png">
+      <h4>Christian Education</h4>
+      <p>Teaching biblical foundations in engaging, practical, and relatable ways.</p>
+    </div>
+    <div class="card">
+      <img src="images/icons/tech.png">
+      <h4>Digital Literacy</h4>
+      <p>Explaining technology, AI, and blockchain with clarity and responsibility.</p>
+    </div>
+    <div class="card">
+      <img src="images/icons/future.png">
+      <h4>Future Readiness</h4>
+      <p>Preparing youths to participate ethically in the global digital economy.</p>
+    </div>
+  </div>
+</section>
 
+<section id="founder" class="founder">
+  <h2>Founder</h2>
+  <img src="images/founder.jpg">
+  <p>
+    David (Abuchi / ADE Buchi) founded HECARES Foundation to raise a generation
+    grounded in faith, wisdom, and future readiness.
+  </p>
+</section>
+
+<section id="register">
+  <h2>Register With Us</h2>
   <div class="form-box">
     <form action="https://formspree.io/f/xzdzwadp" method="POST">
       <input type="text" name="name" placeholder="Full Name" required>
@@ -244,17 +376,13 @@
       <input type="email" name="email" placeholder="Email Address" required>
 
       <label>
-        <input type="checkbox" name="terms" required>
+        <input type="checkbox" required>
         I agree to the terms & conditions
       </label>
 
-      <div class="terms">
-        <span>View more</span> about how we use your information and protect your data.
-      </div>
-
       <label>
-        <input type="checkbox" name="notifications" checked>
-        I agree to receive notifications about programs and events
+        <input type="checkbox" checked>
+        I agree to receive notifications about programs & events
       </label>
 
       <button type="submit">Register</button>
@@ -262,13 +390,21 @@
   </div>
 </section>
 
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: contact@hecaresfoundation.org</p>
+  <p>WhatsApp: +1 (123) 456-7890</p>
+</section>
+
 <footer>
   <p>© HECARES Foundation — Faith-Based Youth Education Initiative</p>
 </footer>
 
 <div class="bottom-bar">
-  <a href="#register">Register</a>
-  <a href="seemore.html">See More</a>
+  <a href="#register"><img src="images/icons/register.png">Register</a>
+  <a href="#contact"><img src="images/icons/contact.png">Contact</a>
+  <a href="#programs"><img src="images/icons/programs.png">Programs</a>
+  <a href="seemore.html"><img src="images/icons/more.png">See More</a>
 </div>
 
 </body>
